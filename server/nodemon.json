@@ -1,0 +1,12 @@
+{
+    "restartable": "rs",
+    "ignore": [".git", "node_modules/"],
+    "watch": ["source/"],
+    "execMap": {
+        "ts": "ts-node"
+    },
+    "env": {
+        "NODE_ENV": "development",
+        "PORT": "5555"
+    }
+}
