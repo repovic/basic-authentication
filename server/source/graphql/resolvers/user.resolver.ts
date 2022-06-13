@@ -5,11 +5,16 @@ import userService from "../../services/user.service";
 export default {
     Query: {
         user: async (_: any, __: any, { req, res }: any): Promise<any> => {
-            if (!req.userId) {
-                throw new AuthenticationError("Not Authenticated!");
-            }
-
-            return await userService.getById({ userId: req.userId });
+            return new Promise(async (resolve, reject) => {
+                try {
+                    if (!req.userId) {
+                        throw new AuthenticationError("Not authenticated!");
+                    }
+                    resolve(await userService.getById({ userId: req.userId }));
+                } catch (error) {
+                    reject(error);
+                }
+            });
         },
     },
     Mutation: {
